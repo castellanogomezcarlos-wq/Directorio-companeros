@@ -4,14 +4,14 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center">
-      <div className="max-w-2xl mx-auto px-4 text-center">
+      <div className="max-w-3xl mx-auto px-4 text-center">
         {/* Nombre de la aplicación */}
         <h1 className="text-5xl font-bold text-zinc-900 dark:text-zinc-50 mb-6">
           Directorio de Compañeros
         </h1>
 
         {/* Bienvenida */}
-        <p className="text-xl text-zinc-600 dark:text-zinc-400 mb-12 leading-relaxed">
+        <p className="text-xl text-zinc-700 dark:text-zinc-400 mb-12 leading-relaxed">
           Conoce a los miembros en prácticas de Interamplify. Explora sus perfiles, aprende
           sobre los roles y descubre las tecnologías con las que trabajan.
         </p>
