@@ -1,5 +1,5 @@
-export default function PruebaIdPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function PruebaIdPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
 
   const ejemplos: Record<string, { title: string; desc: string }> = {
     '1': { title: 'Usuario Uno', desc: 'Contenido específico para el id 1.' },
