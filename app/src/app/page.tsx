@@ -16,9 +16,9 @@ export default function Home() {
           sobre los roles y descubre las tecnologías con las que trabajan.
         </p>
 
-        {/* Enlace/Botón */}
+        {/* Enlace/Botón */} 
         <Link
-          href="/companeros"
+          href="/src/app/companeros"
           className="inline-block px-8 py-3 bg-blue-600 dark:bg-blue-400 text-white dark:text-zinc-950 font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-300 transition-colors duration-200"
         >
           Ver compañeros
