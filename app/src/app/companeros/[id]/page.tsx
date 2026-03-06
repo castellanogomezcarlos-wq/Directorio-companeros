@@ -1,9 +1,35 @@
 import Link from "next/link";
 import { coworkers, Coworker } from "../../../lib/data";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateStaticParams() {
+  return coworkers.map((coworker) => ({
+    id: coworker.id,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const companero = coworkers.find((c) => c.id === id);
+
+  if (!companero) {
+    return {
+      title: "Compañero no encontrado",
+      description: "Este compañero no existe",
+    };
+  }
+
+  return {
+    title: `${companero.nombre} - Directorio de Compañeros`,
+    description: `${companero.rol} - ${companero.bio}`,
+  };
 }
 
 export default async function CompaneroDetallePage({ params }: PageProps) {
