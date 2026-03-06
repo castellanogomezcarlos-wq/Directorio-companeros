@@ -12,8 +12,8 @@ export default function PantallaInicio() {
 
         {/* Mensaje de bienvenida */}
         <p className="text-xl text-zinc-700 dark:text-zinc-400 mb-12 leading-relaxed">
-          Conoce a los miembros en prácticas de Interamplify. Explora sus perfiles, aprende
-          sobre los roles y descubre las tecnologías con las que trabajan.
+          Conoce a los miembros en prácticas de Interamplify. Explora sus perfiles, investiga 
+          sobre sus roles y descubre las tecnologías con las que trabajan.
         </p>
 
         {/* Enlace a los compañeros */} 

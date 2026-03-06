@@ -3,7 +3,7 @@ import { coworkers, Coworker } from "../../../lib/data";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-interface PageProps {
+interface PropsPagina {
   params: Promise<{ id: string }>;
 }
 
@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
+}: PropsPagina): Promise<Metadata> {
   const { id } = await params;
   const companero = coworkers.find((c) => c.id === id);
 
@@ -32,7 +32,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function CompaneroDetallePage({ params }: PageProps) {
+export default async function CompaneroDetallePage({ params }: PropsPagina) {
   const { id } = await params;
   const companero = coworkers.find((c) => c.id === id);
 
@@ -63,10 +63,10 @@ export default async function CompaneroDetallePage({ params }: PageProps) {
             </p>
           </div>
 
-          {/* Bio */}
+          {/* Descripción de la persona */}
           <div className="mb-8 pb-8 border-b border-zinc-200 dark:border-zinc-800">
             <h2 className="text-sm font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-3">
-              Sobre mí
+              Descripción
             </h2>
             <p className="text-base text-zinc-700 dark:text-zinc-300 leading-relaxed">
               {companero.bio}
@@ -79,12 +79,12 @@ export default async function CompaneroDetallePage({ params }: PageProps) {
               Tecnologías
             </h2>
             <div className="flex flex-wrap gap-2">
-              {companero.tecnologias.map((tech: string) => (
+              {companero.tecnologias.map((tecnologia: string) => (
                 <span
-                  key={tech}
+                  key={tecnologia}
                   className="inline-block bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 text-sm font-medium px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-700"
                 >
-                  {tech}
+                  {tecnologia}
                 </span>
               ))}
             </div>
