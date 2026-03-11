@@ -19,7 +19,7 @@ export default function CompanerosPage() {
       <div className="max-w-6xl mx-auto px-4 py-16">
         {/* Botón de retroceso a inicio */}
         <Link
-          href="/src/app"
+          href="/"
           className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-8"
         >
           🔙 INICIO

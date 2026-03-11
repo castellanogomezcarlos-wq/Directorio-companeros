@@ -45,7 +45,7 @@ export default async function CompaneroDetallePage({ params }: PropsPagina) {
       <div className="max-w-2xl mx-auto px-4 py-16">
         {/* Botón de retroceso */}
         <Link
-          href="/src/app/companeros"
+          href="/companeros"
           className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-8"
         >
           ← Volver al listado

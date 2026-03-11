@@ -7,7 +7,7 @@ interface MemberCardProps {
 
 export function MemberCard({ companero }: MemberCardProps) {
   return (
-    <Link href={`/src/app/companeros/${companero.id}`}>
+    <Link href={`/companeros/${companero.id}`}>
       <div className="bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 p-6 hover:border-blue-600 dark:hover:border-blue-400 hover:shadow-lg dark:hover:shadow-blue-900/20 transition-all duration-200 cursor-pointer">
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
           {companero.nombre}

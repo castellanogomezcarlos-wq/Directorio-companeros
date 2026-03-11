@@ -18,7 +18,7 @@ export default function PantallaInicio() {
 
         {/* Enlace a los compañeros */} 
         <Link
-          href="/src/app/companeros"
+          href="/companeros"
           className="inline-block px-8 py-3 bg-blue-600 dark:bg-blue-400 text-white dark:text-zinc-950 font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-300 transition-colors duration-200"
         >
           Ver compañeros
