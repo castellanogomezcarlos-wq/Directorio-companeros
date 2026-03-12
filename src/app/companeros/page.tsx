@@ -7,12 +7,25 @@ import { MemberCard } from "../../components/membercard";
 
 export default function CompanerosPage() {
   const [busqueda, setBusqueda] = useState("");
+  const [orden, setOrden] = useState("asc");
 
   const coworkersFiltrados = useMemo(() => {
-    return coworkers.filter((coworker) =>
+    // 1. Filtrar por búsqueda
+    let resultado = coworkers.filter((coworker) =>
       coworker.nombre.toLowerCase().includes(busqueda.toLowerCase())
     );
-  }, [busqueda]);
+
+    // 2. Ordenar
+    resultado = resultado.sort((a, b) => {
+      if (orden === "asc") {
+        return a.nombre.localeCompare(b.nombre);
+      } else {
+        return b.nombre.localeCompare(a.nombre);
+      }
+    });
+
+    return resultado;
+  }, [busqueda, orden]);
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
@@ -23,7 +36,7 @@ export default function CompanerosPage() {
             href="/"
             className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
           >
-            🔙  INICIO
+            🔙 INICIO
           </Link>
         </div>
       </div>
@@ -42,7 +55,7 @@ export default function CompanerosPage() {
         </div>
       </section>
 
-      {/* Sección de búsqueda y filtrado */}
+      {/* Sección de búsqueda, filtrado y ordenación */}
       <section className="bg-zinc-50 dark:bg-zinc-950 py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8">
@@ -55,15 +68,31 @@ export default function CompanerosPage() {
               </p>
             </div>
 
-            {/* Búsqueda */}
-            <div className="w-full sm:w-auto">
+            {/* Búsqueda y Ordenación */}
+            <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
                 placeholder="Buscar por nombre..."
                 value={busqueda}
                 onChange={(e) => setBusqueda(e.target.value)}
-                className="w-full sm:max-w-sm px-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-900 dark:text-zinc-50 placeholder-zinc-500 dark:placeholder-zinc-400 focus:outline-none focus:border-blue-600 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all"
+                className="px-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-900 dark:text-zinc-50 placeholder-zinc-500 dark:placeholder-zinc-400 focus:outline-none focus:border-blue-600 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all"
               />
+
+              {/* Botón de ordenación */}
+              <button
+                onClick={() => setOrden(orden === "asc" ? "desc" : "asc")}
+                className={`px-4 py-3 rounded-lg font-semibold transition-all ${
+                  orden === "asc"
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "bg-zinc-200 text-zinc-900 hover:bg-zinc-300"
+                } dark:${
+                  orden === "asc"
+                    ? "bg-blue-400 text-zinc-950 hover:bg-blue-300"
+                    : "bg-zinc-800 text-zinc-50 hover:bg-zinc-700"
+                }`}
+              >
+                {orden === "asc" ? "Ordenar por: A → Z" : "Ordenar por: Z → A"}
+              </button>
             </div>
           </div>
 
