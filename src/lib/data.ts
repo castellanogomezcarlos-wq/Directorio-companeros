@@ -5,6 +5,21 @@ export interface Coworker {
     bio: string;
     tecnologias: string[];
 }
+    // Función para obtener tecnologías únicas y su conteo
+export function obtenerTecnologiasUnicas(): { tech: string; count: number }[] {
+  const tecnologiasMap = new Map<string, number>();
+
+  coworkers.forEach((coworker) => {
+    coworker.tecnologias.forEach((tech) => {
+      // Busca el contador actual de la tecnología o lo inicializa a 0 y luego lo incrementa en 1
+      tecnologiasMap.set(tech, (tecnologiasMap.get(tech) || 0) + 1);
+    });
+  });
+      // Tranformación del mapa en array de objetos con la tecnología y su contador, luego ordenado alfabéticamente por tecnología
+  return Array.from(tecnologiasMap, ([tech, count]) => ({ tech, count })).sort(
+    (a, b) => a.tech.localeCompare(b.tech)
+  );
+}
 
 export const coworkers: Coworker[] = [
   {
@@ -89,7 +104,7 @@ export const coworkers: Coworker[] = [
     nombre: "Cristina Ruiz",
     rol: "Frontend Developer",
     bio: "Desarrolladora frontend con foco en performance y accesibilidad. Experta en Vue.js y testing.",
-    tecnologias: ["Vue.js", "TypeScript", "Vitest", "CSS Grid"],
+    tecnologias: ["Vue.js", "TypeScript", "Adobe XD", "CSS Grid"],
   },
   {
     id: "13",

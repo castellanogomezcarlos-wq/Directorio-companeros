@@ -75,7 +75,7 @@ export default function PantallaInicio() {
 
             {/* Tarjeta 2 */}
             <div className="animar-fade-in-up tarjeta-2 p-8 max-h-50 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700">
-              <h3 className="text-xl font-semibold mb-3">Búsqueda inteligente</h3>
+              <h3 className="text-xl font-semibold mb-3">Filtros de búsqueda</h3>
               <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 Filtra y busca compañeros por nombre en tiempo real. Una forma rápida 
                 de encontrar exactamente quién buscas.
@@ -84,7 +84,7 @@ export default function PantallaInicio() {
 
             {/* Tarjeta 3 */}
             <div className="animar-fade-in-up tarjeta-3 p-8 max-h-50 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700">
-              <h3 className="text-xl font-semibold mb-3">Stack tecnológico</h3>
+              <h3 className="text-xl font-semibold mb-3">Listado tecnológico</h3>
               <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 Descubre las tecnologías que usamos. Explora por tech stack y conoce 
                 quién trabaja con cada una.

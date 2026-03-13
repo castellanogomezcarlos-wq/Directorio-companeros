@@ -108,12 +108,6 @@ export default function CompanerosPage() {
               <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-4">
                 No se encontraron compañeros con ese nombre.
               </p>
-              <button
-                onClick={() => setBusqueda("")}
-                className="px-6 py-2 bg-blue-600 dark:bg-blue-400 text-white dark:text-zinc-950 font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-300 transition-colors"
-              >
-                Limpiar búsqueda
-              </button>
             </div>
           )}
         </div>
