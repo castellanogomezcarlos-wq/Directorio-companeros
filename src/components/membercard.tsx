@@ -18,16 +18,18 @@ export function MemberCard({ companero }: MemberCardProps) {
         </p>
 
         {/* Tecnologías como badges */}
+        
         <div className="flex flex-wrap gap-2">
-          {companero.tecnologias.map((tech: string) => (
-            <span
-              key={tech}
-              className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium px-2 py-1 rounded-full border border-blue-200 dark:border-blue-800"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+  {companero.tecnologias.map((tech: string) => (
+    <Link key={tech} href={`/tecnologias/${encodeURIComponent(tech)}`}>
+      <span
+        className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium px-2 py-1 rounded-full border border-blue-200 dark:border-blue-800"
+      >
+        {tech}
+      </span>
+    </Link>
+  ))}
+</div>
       </div>
 
       {/* Botón de acceso al perfil */}

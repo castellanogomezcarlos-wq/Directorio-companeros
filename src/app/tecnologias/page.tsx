@@ -44,32 +44,37 @@ export default function TecnologiasPage() {
           </div>
 
           {/* Grid de tecnologías */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tecnologias.map((item) => (
-              <Link
-                key={item.tech}
-                href={`/tecnologias/${encodeURIComponent(item.tech)}`}
-                className="group"
-              >
-                <div className="bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 p-6 hover:border-blue-600 dark:hover:border-blue-400 hover:shadow-lg dark:hover:shadow-blue-900/20 transition-all duration-200 h-full flex flex-col items-center justify-center text-center min-h-40">
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {item.tech}
-                  </h3>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
-                    Utilizada por
-                  </p>
-                  <div className="flex items-center justify-center">
-                    <span className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded-full font-semibold text-lg">
-                      {item.count}
-                    </span>
-                  </div>
-                  <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-4">
-                    miembro{item.count !== 1 ? 's' : ''}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {tecnologias.map((item) => (
+    <div
+      key={item.tech}
+      className="bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 p-6 hover:border-blue-600 dark:hover:border-blue-400 hover:shadow-lg dark:hover:shadow-blue-900/20 transition-all duration-200 h-full flex flex-col items-center justify-center text-center min-h-60"
+    >
+      <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
+        {item.tech}
+      </h3>
+      <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
+        Utilizada por
+      </p>
+      <div className="flex items-center justify-center">
+        <span className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded-full font-semibold text-lg">
+          {item.count}
+        </span>
+      </div>
+      <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-4">
+        miembro{item.count !== 1 ? 's' : ''}
+      </p>
+
+      {/* Botón de acceso */}
+      <Link
+        href={`/tecnologias/${encodeURIComponent(item.tech)}`}
+        className="mt-6 w-full px-4 py-2 bg-blue-600 dark:bg-blue-400 text-white dark:text-zinc-950 font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-300 transition-colors duration-200 text-center"
+      >
+        Acceder tecnología
+      </Link>
+    </div>
+  ))}
+</div>
         </div>
       </section>
     </main>
