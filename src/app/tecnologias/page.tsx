@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { obtenerTecnologiasUnicas } from "../../lib/data";
 
-export default function TecnologiasPage() {
+ export default function TecnologiasPage() {
   const tecnologias = obtenerTecnologiasUnicas();
 
   return (
