@@ -1,19 +1,44 @@
-"use client";
-
 import Link from "next/link";
-import { useState, useMemo, use } from "react";
-import { coworkers } from "../../../lib/data";
+import { coworkers, obtenerTecnologiasUnicas } from "../../../lib/data";
 import { MemberCard } from "../../../components/membercard";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ tech: string }>;
 }
 
-export default function TecnologiaDetallePage({ params }: PageProps) {
-  const { tech } = use(params);
+export async function generateStaticParams() {
+  const tecnologias = obtenerTecnologiasUnicas();
+  return tecnologias.map((item) => ({
+    tech: encodeURIComponent(item.tech),
+  }));
+}
+
+export async function generateMetadata({params,}: PageProps): Promise<Metadata> {
+  const { tech } = await params;
   const tecnologia = decodeURIComponent(tech);
-  const [busqueda, setBusqueda] = useState("");
+
+  const count = coworkers.filter((coworker) =>
+    coworker.tecnologias.includes(tecnologia)
+  ).length;
+
+  if (count === 0) {
+    return {
+      title: "Tecnología no encontrada",
+      description: "Esta tecnología no existe en nuestro equipo",
+    };
+  }
+
+  return {
+    title: `${tecnologia} - Directorio de Compañeros`,
+    description: `${count} miembro${count !== 1 ? 's' : ''} del equipo trabaja${count !== 1 ? 'n' : ''} con ${tecnologia}.`,
+  };
+}
+
+export default async function TecnologiaDetallePage({ params }: PageProps) {
+  const { tech } = await params;
+  const tecnologia = decodeURIComponent(tech);
 
   // Filtrar compañeros que usan esta tecnología
   const companerosConTech = coworkers.filter((coworker) =>
@@ -24,12 +49,6 @@ export default function TecnologiaDetallePage({ params }: PageProps) {
   if (companerosConTech.length === 0) {
     notFound();
   }
-
-  const companerosFiltrados = useMemo(() => {
-    return companerosConTech.filter((coworker) =>
-      coworker.nombre.toLowerCase().includes(busqueda.toLowerCase())
-    );
-  }, [busqueda]);
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
@@ -57,51 +76,24 @@ export default function TecnologiaDetallePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Sección de búsqueda y compañeros */}
+      {/* Sección de compañeros */}
       <section className="bg-zinc-50 dark:bg-zinc-950 py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8">
-            <div>
-              <h2 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
-                Especialistas en {tecnologia}
-              </h2>
-              <p className="text-zinc-600 dark:text-zinc-400">
-                {companerosFiltrados.length} miembro{companerosFiltrados.length !== 1 ? 's' : ''}
-              </p>
-            </div>
-
-            {/* Búsqueda */}
-            <div className="w-full sm:w-auto">
-              <input
-                type="text"
-                placeholder="Buscar por nombre..."
-                value={busqueda}
-                onChange={(e) => setBusqueda(e.target.value)}
-                className="w-full sm:max-w-sm px-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-900 dark:text-zinc-50 placeholder-zinc-500 dark:placeholder-zinc-400 focus:outline-none focus:border-blue-600 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900/30 transition-all"
-              />
-            </div>
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
+              Especialistas en {tecnologia}
+            </h2>
+            <p className="text-zinc-600 dark:text-zinc-400">
+              {companerosConTech.length} miembro{companerosConTech.length !== 1 ? 's' : ''}
+            </p>
           </div>
 
           {/* Grid de compañeros */}
-          {companerosFiltrados.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {companerosFiltrados.map((coworker) => (
-                <MemberCard key={coworker.id} companero={coworker} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16">
-              <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-4">
-                No se encontraron compañeros con ese nombre.
-              </p>
-              <button
-                onClick={() => setBusqueda("")}
-                className="px-6 py-2 bg-blue-600 dark:bg-blue-400 text-white dark:text-zinc-950 font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-300 transition-colors"
-              >
-                Limpiar búsqueda
-              </button>
-            </div>
-          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {companerosConTech.map((coworker) => (
+              <MemberCard key={coworker.id} companero={coworker} />
+            ))}
+          </div>
         </div>
       </section>
     </main>
