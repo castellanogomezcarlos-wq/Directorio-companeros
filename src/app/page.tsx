@@ -3,26 +3,27 @@ import Link from "next/link";
 export default function PantallaInicio() {
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50">
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+    <style>{`
+      @keyframes clipReveal {
+        from {
+          clip-path: inset(100% 0 0 0);
+          opacity: 0;
         }
-
-        .animar-fade-in-up {
-          animation: fadeInUp 0.6s ease-out forwards;
+        to {
+          clip-path: inset(0% 0 0 0);
+          opacity: 1;
         }
+      }
 
-        .tarjeta-1 { animation-delay: 0.1s; }
-        .tarjeta-2 { animation-delay: 0.2s; }
-        .tarjeta-3 { animation-delay: 0.3s; }
-      `}</style>
+      .animar-clipreveal {
+        animation: clipReveal 0.5s forwards;
+        opacity: 0;
+      }
+
+      .tarjeta-1 { animation-delay: 0.1s; }
+      .tarjeta-2 { animation-delay: 0.2s; }
+      .tarjeta-3 { animation-delay: 0.3s; }
+    `}</style>
 
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center px-4 py-16">
@@ -65,7 +66,7 @@ export default function PantallaInicio() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Tarjeta 1 */}
-            <div className="animar-fade-in-up tarjeta-1 p-8 max-h-80 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700">
+            <div className="animar-clipreveal tarjeta-1 p-8 max-h-80 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700">
               <h3 className="text-xl font-semibold mb-3">Perfiles detallados</h3>
               <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 Accede a información completa sobre cada miembro del equipo: su rol, 
@@ -74,7 +75,7 @@ export default function PantallaInicio() {
             </div>
 
             {/* Tarjeta 2 */}
-            <div className="animar-fade-in-up tarjeta-2 p-8 max-h-50 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700">
+            <div className="animar-clipreveal tarjeta-2 p-8 max-h-50 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700">
               <h3 className="text-xl font-semibold mb-3">Filtros de búsqueda</h3>
               <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 Filtra y busca compañeros por nombre en tiempo real. Una forma rápida 
@@ -83,7 +84,7 @@ export default function PantallaInicio() {
             </div>
 
             {/* Tarjeta 3 */}
-            <div className="animar-fade-in-up tarjeta-3 p-8 max-h-50 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700">
+            <div className="animar-clipreveal tarjeta-3 p-8 max-h-50 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700">
               <h3 className="text-xl font-semibold mb-3">Listado tecnológico</h3>
               <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 Descubre las tecnologías que usamos. Explora por tech stack y conoce 
