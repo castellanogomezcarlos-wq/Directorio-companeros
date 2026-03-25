@@ -10,12 +10,12 @@ export default function CompanerosPage() {
   const [orden, setOrden] = useState("asc");
 
   const coworkersFiltrados = useMemo(() => {
-    // 1. Filtrar por búsqueda
+    // Filtrar por búsqueda
     let resultado = coworkers.filter((coworker) =>
       coworker.nombre.toLowerCase().includes(busqueda.toLowerCase())
     );
 
-    // 2. Ordenar
+    // Ordenar
     resultado = resultado.sort((a, b) => {
       if (orden === "asc") {
         return a.nombre.localeCompare(b.nombre);
@@ -81,16 +81,7 @@ export default function CompanerosPage() {
               {/* Botón de ordenación */}
               <button
                 onClick={() => setOrden(orden === "asc" ? "desc" : "asc")}
-                className={`px-4 py-3 rounded-lg font-semibold transition-all ${
-                  orden === "asc"
-                    ? "bg-blue-600 text-white hover:bg-blue-700"
-                    : "bg-zinc-200 text-zinc-900 hover:bg-zinc-300"
-                } dark:${
-                  orden === "asc"
-                    ? "bg-blue-400 text-zinc-950 hover:bg-blue-300"
-                    : "bg-zinc-800 text-zinc-50 hover:bg-zinc-700"
-                }`}
-              >
+                className={"px-4 py-3 rounded-lg font-semibold transition-all bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-400 text-zinc-950 hover:bg-blue-300"}>
                 {orden === "asc" ? "Ordenar por: A → Z" : "Ordenar por: Z → A"}
               </button>
             </div>

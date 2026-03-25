@@ -59,7 +59,7 @@ export default async function TecnologiaDetallePage({ params }: PageProps) {
             href="/tecnologias"
             className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
           >
-            ← Volver a tecnologías
+            🔙 Volver a tecnologías
           </Link>
         </div>
       </div>

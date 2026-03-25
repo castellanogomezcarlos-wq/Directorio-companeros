@@ -13,9 +13,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: PropsPagina): Promise<Metadata> {
+export async function generateMetadata({params,}: PropsPagina): Promise<Metadata> {
   const { id } = await params;
   const companero = coworkers.find((c) => c.id === id);
 
@@ -48,7 +46,7 @@ export default async function CompaneroDetallePage({ params }: PropsPagina) {
           href="/companeros"
           className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-8"
         >
-          ← Volver al listado
+          🔙 Volver al listado
         </Link>
 
         {/* Tarjeta de perfil */}
