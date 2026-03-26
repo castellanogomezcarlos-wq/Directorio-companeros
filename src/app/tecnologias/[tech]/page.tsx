@@ -31,7 +31,7 @@ export async function generateMetadata({params,}: PageProps): Promise<Metadata> 
   }
 
   return {
-    title: `${tecnologia} - Directorio de Compañeros`,
+    title: `${tecnologia}`,
     description: `${count} miembro${count !== 1 ? 's' : ''} del equipo trabaja${count !== 1 ? 'n' : ''} con ${tecnologia}.`,
   };
 }
